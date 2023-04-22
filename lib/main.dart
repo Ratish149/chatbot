@@ -8,18 +8,18 @@ void main() {
       primarySwatch: Colors.blue,
       primaryColor: const Color.fromRGBO(6, 80, 163, 1),
     ),
-    home: chatApp(),
+    home: ChatApp(),
   ));
 }
 
-class chatApp extends StatefulWidget {
-  const chatApp({Key? key}) : super(key: key);
+class ChatApp extends StatefulWidget {
+  const ChatApp({Key? key}) : super(key: key);
 
   @override
-  State<chatApp> createState() => _chatAppState();
+  State<ChatApp> createState() => _ChatAppState();
 }
 
-class _chatAppState extends State<chatApp> {
+class _ChatAppState extends State<ChatApp> {
   final List<String> imageList = [
     "https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/337290702_754805636223091_6880281911957204206_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=Njg39wYlwTYAX-slDib&_nc_ht=scontent.fktm10-1.fna&oh=00_AfBtVHyZ1BpHI6z0_Z8kxVUf36dOKKGDYXlCo52XBUUbsg&oe=6427BFF3",
     "https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/321492308_1216800388913770_9133888016634999538_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=8nENSEcA7UAAX_ArBHa&_nc_ht=scontent.fktm10-1.fna&oh=00_AfCVkGAY90Sjr_9jWoCRQKcDGdKjvMDPs7AexnpyOZ8QtQ&oe=6426BBB4",
