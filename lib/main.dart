@@ -6,7 +6,7 @@ void main() {
     debugShowCheckedModeBanner: false,
     theme: ThemeData(
       primarySwatch: Colors.blue,
-      primaryColor: Color.fromRGBO(6, 80, 163, 1),
+      primaryColor: const Color.fromRGBO(6, 80, 163, 1),
     ),
     home: chatApp(),
   ));
@@ -50,7 +50,7 @@ class _chatAppState extends State<chatApp> {
         width: 150.0,
         height: 150.0,
       ),
-      margin: EdgeInsets.only(
+      margin: const EdgeInsets.only(
         left: 20.0,
         right: 20.0,
         top: 20.0,
@@ -64,18 +64,18 @@ class _chatAppState extends State<chatApp> {
       height: 130.0,
       child: Card(
         child: Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+          padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 degree,
-                style: TextStyle(
+                style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18.0,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 135.0,
                 child: Divider(),
               ),
@@ -91,16 +91,16 @@ class _chatAppState extends State<chatApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Student Assistant'),
+        title: const Text('Student Assistant'),
         centerTitle: true,
         actions: [
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
                 print("hello action");
               },
-              child: Icon(
+              child: const Icon(
                 Icons.help,
                 size: 25.0,
               ),
@@ -112,37 +112,37 @@ class _chatAppState extends State<chatApp> {
         child: ListView(
           children: [
             UserAccountsDrawerHeader(
-              accountName: Text("Padmashree College"),
-              accountEmail: Text("padmashree college.com"),
+              accountName: const Text("Padmashree College"),
+              accountEmail: const Text("padmashree college.com"),
               currentAccountPicture: CircleAvatar(
                 child: Image.asset('assets/logo.png'),
               ),
             ),
             ListTile(
-              title: Text("Padmashree Site"),
-              trailing: Icon(Icons.web),
+              title: const Text("Padmashree Site"),
+              trailing: const Icon(Icons.web),
               onTap: () {
                 print("hello site");
               },
             ),
-            Divider(
+            const Divider(
               color: Colors.pink,
             ),
             ListTile(
-              title: Text("Padmashree Location"),
-              trailing: Icon(Icons.map),
+              title: const Text("Padmashree Location"),
+              trailing: const Icon(Icons.map),
               onTap: () {
                 print("hello map");
               },
             ),
-            Divider(
+            const Divider(
               color: Colors.pink,
             ),
           ],
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.only(top: 40.0),
+        padding: const EdgeInsets.only(top: 40.0),
         children: [
           Center(
             child: CarouselSlider(
@@ -171,7 +171,7 @@ class _chatAppState extends State<chatApp> {
                   .toList(),
             ),
           ),
-          new Divider(height: 58.0),
+          const Divider(height: 58.0),
           _PCcard(1),
           _PCdetail("Bachelor of Computer Application [BCA]",
               "Tribhuvan University (TU)", 1),
@@ -187,8 +187,8 @@ class _chatAppState extends State<chatApp> {
         ],
       ),
       floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.chat),
-        label: Text("Chat"),
+        icon: const Icon(Icons.chat),
+        label: const Text("Chat"),
         tooltip: 'Connect To Assistant',
         onPressed: () {
           print("hello floating");
