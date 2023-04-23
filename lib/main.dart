@@ -1,3 +1,4 @@
+import 'package:capstone/chatPage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -119,7 +120,8 @@ class _ChatAppState extends State<ChatApp> {
             padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                print("hello action");
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ChatPage()));
               },
               child: const Icon(
                 Icons.help,
@@ -222,7 +224,8 @@ class _ChatAppState extends State<ChatApp> {
         label: const Text("Chat"),
         tooltip: 'Connect To Assistant',
         onPressed: () {
-          print("hello floating");
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => ChatPage()));
         },
       ),
     );
