@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -17,6 +19,25 @@ class ChatApp extends StatefulWidget {
 
   @override
   State<ChatApp> createState() => _ChatAppState();
+}
+
+void _urlLauncher(int value) async {
+  String url = "";
+  if (value == 1) {
+    url = "https://www.padmashreecollege.edu.np/";
+  } else if (value == 2) {
+    url =
+        "https://www.google.com/maps/place/Padmashree+Int'l+College/@27.6876044,85.3480365,15z/data=!4m6!3m5!1s0x39eb190fffffffcf:0xcd79fd6c4087f48d!8m2!3d27.6876044!4d85.3480365!16s%2Fg%2F11f154hn9g";
+  } else if (value == 3) {
+    url = "https://www.padmashreecollege.edu.np/news-updates";
+  } else if (await canLaunchUrlString(url)) {
+    await launchUrlString(
+      url,
+      mode: LaunchMode.inAppWebView,
+    );
+  } else {
+    throw "Could not Launch $url";
+  }
 }
 
 class _ChatAppState extends State<ChatApp> {
@@ -122,7 +143,7 @@ class _ChatAppState extends State<ChatApp> {
               title: const Text("Padmashree Site"),
               trailing: const Icon(Icons.web),
               onTap: () {
-                print("hello site");
+                _urlLauncher(1);
               },
             ),
             const Divider(
@@ -132,7 +153,17 @@ class _ChatAppState extends State<ChatApp> {
               title: const Text("Padmashree Location"),
               trailing: const Icon(Icons.map),
               onTap: () {
-                print("hello map");
+                _urlLauncher(2);
+              },
+            ),
+            const Divider(
+              color: Colors.pink,
+            ),
+            ListTile(
+              title: const Text("News & Updates"),
+              trailing: const Icon(Icons.web),
+              onTap: () {
+                _urlLauncher(3);
               },
             ),
             const Divider(
