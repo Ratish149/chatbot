@@ -31,6 +31,8 @@ void _urlLauncher(int value) async {
         "https://www.google.com/maps/place/Padmashree+Int'l+College/@27.6876044,85.3480365,15z/data=!4m6!3m5!1s0x39eb190fffffffcf:0xcd79fd6c4087f48d!8m2!3d27.6876044!4d85.3480365!16s%2Fg%2F11f154hn9g";
   } else if (value == 3) {
     url = "https://www.padmashreecollege.edu.np/news-updates";
+  } else if (value == 4) {
+    url = "https://www.padmashreecollege.edu.np/news-updates";
   } else if (await canLaunchUrlString(url)) {
     await launchUrlString(
       url,
