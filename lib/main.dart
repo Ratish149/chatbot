@@ -33,7 +33,8 @@ void _urlLauncher(int value) async {
     url = "https://www.padmashreecollege.edu.np/news-updates";
   } else if (value == 4) {
     url = "https://www.padmashreecollege.edu.np/news-updates";
-  } else if (await canLaunchUrlString(url)) {
+  }
+  if (await canLaunchUrlString(url)) {
     await launchUrlString(
       url,
       mode: LaunchMode.inAppWebView,
@@ -115,7 +116,7 @@ class _ChatAppState extends State<ChatApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Student Assistant'),
+        title: const Text('Padmashree College'),
         centerTitle: true,
         actions: [
           Padding(
