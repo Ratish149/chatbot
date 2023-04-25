@@ -1,7 +1,7 @@
 import 'package:capstone/chatPage.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:url_launcher/url_launcher.dart';
+
 import 'package:url_launcher/url_launcher_string.dart';
 
 void main() {
@@ -120,8 +120,8 @@ class _ChatAppState extends State<ChatApp> {
             padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => ChatPage()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Chat()));
               },
               child: const Icon(
                 Icons.help,
@@ -225,7 +225,7 @@ class _ChatAppState extends State<ChatApp> {
         tooltip: 'Connect To Assistant',
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => ChatPage()));
+              context, MaterialPageRoute(builder: (context) => Chat()));
         },
       ),
     );
