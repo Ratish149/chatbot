@@ -43,12 +43,12 @@ void _urlLauncher(int value) async {
 
 class _ChatAppState extends State<ChatApp> {
   final List<String> imageList = [
-    "https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/337290702_754805636223091_6880281911957204206_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=730e14&_nc_ohc=Njg39wYlwTYAX-slDib&_nc_ht=scontent.fktm10-1.fna&oh=00_AfBtVHyZ1BpHI6z0_Z8kxVUf36dOKKGDYXlCo52XBUUbsg&oe=6427BFF3",
-    "https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/321492308_1216800388913770_9133888016634999538_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=730e14&_nc_ohc=8nENSEcA7UAAX_ArBHa&_nc_ht=scontent.fktm10-1.fna&oh=00_AfCVkGAY90Sjr_9jWoCRQKcDGdKjvMDPs7AexnpyOZ8QtQ&oe=6426BBB4",
+    "https://www.padmashreecollege.edu.np/uploads/albums/cover/1676599992.jpg",
+    "https://www.padmashreecollege.edu.np/uploads/albums/cover/1671886199.jpg",
     "https://www.padmashreecollege.edu.np/uploads/albums/cover/1667873257.jpg",
     "https://www.padmashreecollege.edu.np/uploads/albums/cover/1662720759.jpg",
     "https://www.padmashreecollege.edu.np/uploads/event/1664366038.jpg",
-    "https://scontent.fktm10-1.fna.fbcdn.net/v/t39.30808-6/337522523_1599480117240161_2043319741519612757_n.jpg?stp=c34.0.206.206a_dst-jpg_p206x206&_nc_cat=101&ccb=1-7&_nc_sid=da31f3&_nc_ohc=qVA0PJqi4fAAX_NeMxf&_nc_ht=scontent.fktm10-1.fna&oh=00_AfDKpakWJR2_VSY7R4jRbCLkpsQlCTvutYPYSjpuUgS52A&oe=6426A188"
+    "https://www.padmashreecollege.edu.np/uploads/albums/cover/1670469232.jpg"
   ];
   Widget _PCcard(int value) {
     String url = "";

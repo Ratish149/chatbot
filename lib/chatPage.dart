@@ -1,9 +1,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:sound_stream/sound_stream.dart';
+import 'package:dialogflow_grpc/dialogflow_grpc.dart';
+import 'package:dialogflow_grpc/generated/google/cloud/dialogflow/v2beta1/session.pb.dart';
 
 // TODO import Dialogflow
+late DialogflowGrpcV2Beta1 dialogflow;
 
 class Chat extends StatefulWidget {
   Chat({Key? key}) : super(key: key);
@@ -50,6 +54,10 @@ class _ChatState extends State<Chat> {
     await Future.wait([_recorder.initialize()]);
 
     // TODO Get a Service account
+    final serviceAccount = ServiceAccount.fromString(
+        (await rootBundle.loadString('assets/credentials.json')));
+    // Create a DialogflowGrpc Instance
+    dialogflow = DialogflowGrpcV2Beta1.viaServiceAccount(serviceAccount);
   }
 
   void stopStream() async {
@@ -63,6 +71,28 @@ class _ChatState extends State<Chat> {
     _textController.clear();
 
     //TODO Dialogflow Code
+    ChatMessage message = ChatMessage(
+      text: text,
+      name: "You",
+      type: true,
+    );
+
+    setState(() {
+      _messages.insert(0, message);
+    });
+    DetectIntentResponse data = await dialogflow.detectIntent(text, 'en-US');
+    String fulfillmentText = data.queryResult.fulfillmentText;
+    if (fulfillmentText.isNotEmpty) {
+      ChatMessage botMessage = ChatMessage(
+        text: fulfillmentText,
+        name: "Padmashree Bot",
+        type: false,
+      );
+
+      setState(() {
+        _messages.insert(0, botMessage);
+      });
+    }
   }
 
   void handleStream() async {
@@ -75,10 +105,59 @@ class _ChatState extends State<Chat> {
     });
 
     // TODO Create SpeechContexts
+    var biasList = SpeechContextV2Beta1(phrases: [
+      'Dialogflow CX',
+      'Dialogflow Essentials',
+      'Action Builder',
+      'HIPAA'
+    ], boost: 20.0);
+
+    var config = InputConfigV2beta1(
+        encoding: 'AUDIO_ENCODING_LINEAR_16',
+        languageCode: 'en-US',
+        sampleRateHertz: 16000,
+        singleUtterance: false,
+        speechContexts: [biasList]);
     // Create an audio InputConfig
 
     // TODO Make the streamingDetectIntent call, with the InputConfig and the audioStream
+    final responseStream =
+        dialogflow.streamingDetectIntent(config, _audioStream);
     // TODO Get the transcript and detectedIntent and show on screen
+    responseStream.listen((data) {
+      //print('----');
+      setState(() {
+        //print(data);
+        String transcript = data.recognitionResult.transcript;
+        String queryText = data.queryResult.queryText;
+        String fulfillmentText = data.queryResult.fulfillmentText;
+
+        if (fulfillmentText.isNotEmpty) {
+          ChatMessage message = new ChatMessage(
+            text: queryText,
+            name: "You",
+            type: true,
+          );
+
+          ChatMessage botMessage = new ChatMessage(
+            text: fulfillmentText,
+            name: "Bot",
+            type: false,
+          );
+
+          _messages.insert(0, message);
+          _textController.clear();
+          _messages.insert(0, botMessage);
+        }
+        if (transcript.isNotEmpty) {
+          _textController.text = transcript;
+        }
+      });
+    }, onError: (e) {
+      //print(e);
+    }, onDone: () {
+      //print('done');
+    });
   }
 
   // The chat interface
@@ -87,7 +166,9 @@ class _ChatState extends State<Chat> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text('Student Assistant'),
+      ),
       body: Column(children: <Widget>[
         Flexible(
             child: ListView.builder(
